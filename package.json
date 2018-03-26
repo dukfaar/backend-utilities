@@ -1,0 +1,30 @@
+{
+  "name": "backend-utilities",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "mocha -r ts-node/register **/*.test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dukfaar/backend-utilities.git"
+  },
+  "author": "dukfaar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dukfaar/backend-utilities/issues"
+  },
+  "homepage": "https://github.com/dukfaar/backend-utilities#readme",
+  "dependencies": {
+    "@types/node": "latest",
+    "typescript": "latest",
+    "ts-node": "latest",
+    "lodash": "latest"
+  },
+  "devDependencies": {
+    "@types/mocha": "latest",
+    "mocha": "latest",
+    "chai": "latest"
+  }
+}
