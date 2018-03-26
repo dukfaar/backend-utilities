@@ -1,6 +1,6 @@
 import * as _ from 'lodash'
 
-export function createType(type, findBy, params): Promise {
+export default function createType(type, findBy, params): Promise {
     return type.findOne(findBy).lean().exec()
     .then(instance => {
         return instance 

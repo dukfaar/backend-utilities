@@ -1,6 +1,6 @@
 import * as _ from 'lodash'
 
-function updateType(type, findBy, params): Promise {
+export default function updateType(type, findBy, params): Promise {
     return type.findOne(findBy).exec()
     .then(instance => {
         return instance
