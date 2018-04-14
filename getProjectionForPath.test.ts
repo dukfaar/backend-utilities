@@ -7,9 +7,11 @@ describe("getProjectionForPath helper function", () => {
     let pathNode = {
       selections: [
         {
+          kind: 'Field',
           name: { value: 'testField' },
         },
         {
+          kind: 'Field',
           name: { value: 'testField2' }
         }
       ]

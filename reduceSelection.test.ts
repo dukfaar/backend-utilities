@@ -6,7 +6,7 @@ describe("reduceSelections helper function", () => {
   it('reduces correctly', () => {
     let input = {
       selectionSet: {
-        selections: [{name: { value: 'testField' }}]
+        selections: [{kind: 'Field', name: { value: 'testField' }}]
       }
     }
 

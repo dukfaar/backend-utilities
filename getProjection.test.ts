@@ -7,7 +7,7 @@ describe("getProjection helper function", () => {
     let input = {
       fieldNodes: [{
         selectionSet: {
-          selections: [{name: { value: 'testField' }}]
+          selections: [{kind: 'Field', name: { value: 'testField' }}]
         }
       }]
     }
