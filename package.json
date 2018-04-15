@@ -2,9 +2,15 @@
   "name": "backend-utilities",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "./lib/index.ts",
+  "typings": "./lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "scripts": {
-    "test": "mocha -r ts-node/register **/*.test.ts"
+    "test": "mocha -r ts-node/register **/*.test.ts",
+    "build": "tsc",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
