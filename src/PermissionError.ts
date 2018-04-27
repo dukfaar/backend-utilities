@@ -1,7 +1,11 @@
 export default class PermissionError {
-    message: string
+    permission: string
     
     constructor(permission: string) {
-        this.message = `Permission '${permission}' is missing`
+        this.permission = permission
+    }
+
+    toString(): string {
+        return `Permission '${this.permission}' is missing`
     }
 } 
