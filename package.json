@@ -1,6 +1,6 @@
 {
   "name": "backend-utilities",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "",
   "main": "./lib/index.js",
   "typings": "./lib/index.d.ts",
@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "test": "mocha -r ts-node/register **/*.test.ts",
+    "test-watch": "mocha -r ts-node/register **/*.test.ts --watch --watch-extensions ts",
     "build": "tsc",
     "prepare": "npm run build"
   },
