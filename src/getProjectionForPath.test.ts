@@ -2,16 +2,9 @@ import { expect } from 'chai'
 
 import getProjectionForPath from './getProjectionForPath'
 
-const makeGQLNode = (kind: string, name: string, selections:any[]=undefined) => {
-  let result:any = { kind: kind, name: {value: name} }
-  if(selections) result.selectionSet = { selections: selections }
-  return result
-}
-
-const makeField = (name: string, selections:any[]=undefined) => makeGQLNode('Field', name, selections)
-const makeFragmentSpread = (name: string, selections:any[]=undefined) => makeGQLNode('FragmentSpread', name, selections)
-const makeFragmentDefinition = (name: string, selections:any[]=undefined) => makeGQLNode('FragmentDefinition', name, selections)
-
+import {
+  makeField, makeFragmentDefinition, makeFragmentSpread
+} from './gqlTestHelpers'
 
 describe("getProjectionForPath helper function", () => {
   it('projects correctly', () => {

@@ -1,5 +1,5 @@
-import reduceSelections from './reduceSelections'
+import getProjectionForPath from './getProjectionForPath'
 
 export default function getProjection (fieldASTs) {
-  return reduceSelections(fieldASTs.fieldNodes[0])
+  return getProjectionForPath(fieldASTs, [])
 }

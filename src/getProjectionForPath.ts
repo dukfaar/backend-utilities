@@ -2,18 +2,7 @@ import * as _ from 'lodash'
 
 import reduceSelections from './reduceSelections'
 
-const selectionFlattener = (fieldASTs) => (selection) => {
-  switch(selection.kind) {
-    case 'FragmentSpread':
-      return fieldASTs.fragments[selection.name.value].selectionSet.selections
-    case 'Field':
-      return [selection]
-    default:
-      throw "Unsupported Kind"
-  }
-}
-
-const flattenSelections = (fieldASTs, selections) => _.flatMap(selections, selectionFlattener(fieldASTs))
+import flattenSelections from './flattenProjectionSelection'
 
 export default function getProjectionForPath (fieldASTs, path) {
   let selection = fieldASTs.fieldNodes[0]
