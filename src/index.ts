@@ -8,6 +8,8 @@ import requireTypePermissions from './requireTypePermissions'
 import PermissionError from './PermissionError'
 import hasPermission from './hasPermission'
 import { Operation } from './Operation'
+import RelayHelper from './RelayHelper'
+import RelayHelperFactory from './RelayHelperFactory'
 
 export {
     getProjection,
@@ -19,5 +21,7 @@ export {
     requireTypePermissions,
     PermissionError,
     hasPermission,
-    Operation
+    Operation,
+    RelayHelper,
+    RelayHelperFactory
 }

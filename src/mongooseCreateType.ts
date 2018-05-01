@@ -1,7 +1,6 @@
 import * as _ from 'lodash'
-import * as Promise from 'bluebird'
 
-export default function createType(type, findBy, params): Promise {
+export default function createType(type, findBy, params): Promise<any> {
     return type.findOne(findBy).lean().exec()
     .then(instance => {
         return instance 
