@@ -4,9 +4,9 @@ export default function reduceSelections (selection, fieldASTs:any={}) {
             case 'Field': 
                 return { ...projections, [selection.name.value]: 1}
             case 'InlineFragment':
-                return { ...projections, ...reduceSelections(selection)}
+                return { ...projections, ...reduceSelections(selection, fieldASTs)}
             case 'FragmentSpread':
-                return { ...projections, ...reduceSelections(fieldASTs.fragments[selection.name.value])}
+                return { ...projections, ...reduceSelections(fieldASTs.fragments[selection.name.value], fieldASTs)}
             default:
                 throw `Unsupported query kind type: ${selection.kind}`
           }
