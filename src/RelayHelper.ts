@@ -67,10 +67,13 @@ export default class RelayHelper {
             node: p,
             cursor: p._id
         }))
+
+        let head = _.head(edges)
+        let last = _.last(edges)
     
         let pageInfo = {
-            startCursor: _.head(edges).cursor,
-            endCursor: _.last(edges).cursor,
+            startCursor: head && head.cursor,
+            endCursor: last && last.cursor,
             hasNextPage: undefined,
             hasPreviousPage: undefined
         }
