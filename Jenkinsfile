@@ -13,5 +13,11 @@ node {
         stage('Build') {
             sh 'npm run build'
         }
+
+        if(env.BRANCH_NAME == 'master') {
+            stage('Publish') {
+                sh 'npm publish'
+            }
+        }
     }
 }
