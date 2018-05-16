@@ -10,6 +10,7 @@ import hasPermission from './hasPermission'
 import { Operation } from './Operation'
 import RelayHelper from './RelayHelper'
 import RelayHelperFactory from './RelayHelperFactory'
+import MongooseHelper from "./MongooseHelper"
 
 export {
     getProjection,
@@ -23,5 +24,6 @@ export {
     hasPermission,
     Operation,
     RelayHelper,
-    RelayHelperFactory
+    RelayHelperFactory,
+    MongooseHelper
 }
