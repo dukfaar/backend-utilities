@@ -25,18 +25,18 @@
   "homepage": "https://github.com/dukfaar/backend-utilities#readme",
   "dependencies": {
     "lodash": "^4.17.10",
-    "mongoose": "^5.0.17"
+    "mongoose": "^5.1.1"
   },
   "devDependencies": {
-    "@types/mongoose": "^5.0.11",
-    "@types/sinon": "^4.3.3",
-    "ts-node": "^6.0.2",
-    "@types/node": "^8.10.11",
-    "typescript": "^2.8.3",
-    "@types/mocha": "^5.2.0",
     "@types/lodash": "^4.14.108",
-    "mocha": "^5.1.1",
+    "@types/mocha": "^5.2.0",
+    "@types/mongoose": "^5.0.13",
+    "@types/node": "^8.10.15",
+    "@types/sinon": "^4.3.3",
     "chai": "^4.1.2",
-    "sinon": "^5.0.7"
+    "mocha": "^5.1.1",
+    "sinon": "^5.0.7",
+    "ts-node": "^6.0.3",
+    "typescript": "^2.8.3"
   }
 }

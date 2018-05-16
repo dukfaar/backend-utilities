@@ -20,6 +20,7 @@ node {
                 string(credentialsId: 'npm-registry-email', variable: 'NPM_EMAIL')
                 ]) {
                 stage('Publish') {
+                    sh 'echo $NPM_USER'
                     sh '''
 npm adduser <<EOF
 $NPM_USER
