@@ -15,8 +15,20 @@ node {
         }
 
         if(env.BRANCH_NAME == 'master') {
-            stage('Publish') {
-                sh 'npm publish'
+            withCredentials([
+                usernamePassword(credentialsId: 'npm-registry', usernameVariable: 'NPM_USER', passwordVariable: 'NPM_PASSWORD'),
+                string(credentialsId: 'npm-registry-email', variable: 'NPM_EMAIL')
+                ]) {
+                stage('Publish') {
+                    sh '''
+npm adduser <<EOF
+$NPM_USER
+$NPM_PASSWORD
+$NPM_EMAIL
+EOF
+'''
+                    sh 'npm publish'
+                }
             }
         }
     }
