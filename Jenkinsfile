@@ -15,12 +15,10 @@ node {
         }
 
         if(env.BRANCH_NAME == 'master') {
-            withCredentials([
-                usernamePassword(credentialsId: 'npm-registry', usernameVariable: 'NPM_USER', passwordVariable: 'NPM_PASSWORD'),
-                string(credentialsId: 'npm-registry-email', variable: 'NPM_EMAIL')
+            withCredentials([string(credentialsId: 'npm-registry-token', variable: 'NPM_TOKEN')
                 ]) {
                 stage('Publish') {
-                    sh 'echo -e "$NPM_USER\n$NPM_PASSWORD\n$NPM_EMAIL\n" | npm adduser'
+                    sh 'echo "//npm-registry.dukfaar.com/:_authToken=\"$NPM_TOKEN\"" >> .npmrc'
                     sh 'npm publish'
                 }
             }
