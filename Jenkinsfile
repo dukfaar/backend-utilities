@@ -18,7 +18,7 @@ node {
             withCredentials([string(credentialsId: 'npm-registry-token', variable: 'NPM_TOKEN')
                 ]) {
                 stage('Publish') {
-                    sh 'echo "//npm-registry.dukfaar.com/:_authToken=\"$NPM_TOKEN\"" >> .npmrc'
+                    sh "echo '//npm-registry.dukfaar.com/:_authToken=${NPM_TOKEN}' >> .npmrc"
                     sh 'npm publish'
                 }
             }
