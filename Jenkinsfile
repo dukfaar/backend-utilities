@@ -17,7 +17,7 @@ node {
         if(env.BRANCH_NAME == 'master') {
             withCredentials([string(credentialsId: 'npm-registry-token', variable: 'NPM_TOKEN')]) {
                 stage('Publish') {
-                    sh "echo '//npm-registry.dukfaar.com/:_authToken=${NPM_TOKEN}' >> .npmrc"
+                    sh "echo '\n//npm-registry.dukfaar.com/:_authToken=${NPM_TOKEN}' >> .npmrc"
                     sh "cat .npmrc"
                     sh 'npm publish'
                 }
