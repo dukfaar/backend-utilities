@@ -3,7 +3,12 @@ import { Model, Document, DocumentQuery } from 'mongoose'
 import mongooseCreateType from './mongooseCreateType'
 import mongooseUpdateType from './mongooseUpdateType'
 
+import requireTypePermissions from './requireTypePermissions'
+import getProjection from './getProjection'
+import { Operation } from './Operation'
+
 export default class MongooseHelper {
+    private modelName: string
     private pubsubTypeName: string
     private createdSubscriptionName: string
     private updatedSubscriptionName: string
@@ -14,6 +19,7 @@ export default class MongooseHelper {
         private uniqueProperty: string,
         private pubsub
     ) {
+        this.modelName = this.model.collection.name.toLowerCase()
         this.pubsubTypeName = this.model.collection.name.toLowerCase()
         this.createdSubscriptionName = `${this.pubsubTypeName} created`
         this.updatedSubscriptionName = `${this.pubsubTypeName} updated`
@@ -56,15 +62,42 @@ export default class MongooseHelper {
         })
     }
 
-    subscribeCreated() {
+    subscribeCreated(root, params, source, options) {
+        let projection = getProjection(options)
+
+        requireTypePermissions(
+            source.userPermissions, 
+            this.modelName, 
+            projection, 
+            Operation.READ
+        )
+
         return this.pubsub.asyncIterator(this.createdSubscriptionName) 
     }
 
-    subscribeUpdated() {
+    subscribeUpdated(root, params, source, options) {
+        let projection = getProjection(options)
+
+        requireTypePermissions(
+            source.userPermissions, 
+            this.modelName, 
+            projection, 
+            Operation.READ
+        )
+
         return this.pubsub.asyncIterator(this.updatedSubscriptionName) 
     }
 
-    subscribeDeleted() {
+    subscribeDeleted(root, params, source, options) {
+        let projection = getProjection(options)
+
+        requireTypePermissions(
+            source.userPermissions, 
+            this.modelName, 
+            projection, 
+            Operation.READ
+        )
+        
         return this.pubsub.asyncIterator(this.deletedSubscriptionName) 
     }
 }
