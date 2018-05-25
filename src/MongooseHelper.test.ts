@@ -18,8 +18,10 @@ class TestModel {
     }
 
     static collection = {
-        name: 'testModel'
+        name: 'testModels'
     }
+
+    static modelName = 'testModel' 
 
     static findOne(p) {
         let execFunction = () => {
