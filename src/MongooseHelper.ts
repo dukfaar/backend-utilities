@@ -40,7 +40,7 @@ export default class MongooseHelper {
     }
 
     update(params) {
-        return mongooseUpdateType(this.model, { _id: params._id }, params)
+        return mongooseUpdateType(this.model, { _id: params.id }, params)
         .then(result => {
             this.pubsub.publish(this.updatedSubscriptionName, result)
             return result
@@ -48,7 +48,7 @@ export default class MongooseHelper {
     }
 
     delete(params) {
-        return this.model.remove({ _id: params._id }).exec()
+        return this.model.remove({ _id: params.id }).exec()
         .then(result => {
             this.pubsub.publish(this.deletedSubscriptionName, result)
             return result
