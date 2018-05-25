@@ -24,7 +24,8 @@ class TestModel {
     static findOne(p) {
         let execFunction = () => {
             return Promise.resolve(_.find(TestModel.testData, i => {
-                return i.name == p.name
+                if(p._id) return i._id == p._id
+                else return i.name == p.name
             }))
         }
 
@@ -39,7 +40,7 @@ class TestModel {
     static remove(p) {
         let execFunction = () => {
             let i = _.find(TestModel.testData, i => {
-                return i.name == p.name
+                return i._id == p._id
             })
 
             if (i) {
@@ -110,16 +111,16 @@ describe('MongooseHelper', () => {
     })
 
     it('updates an instance', (done) => {
-        helper.update({ name: 'existingEntry', p2: 'p2' })
+        helper.update({ id: 9000, input: { name: 'existingEntry', p2: 'p9' }})
             .then(i => {
                 expect(i.name).to.be.equal('existingEntry')
-                expect(i.p2).to.be.equal('p2')
+                expect(i.p2).to.be.equal('p9')
                 done()
             })
     })
 
     it('deletes an instance', (done) => {
-        helper.delete({ name: 'existingEntry', p2: 'p2' })
+        helper.delete({ id: 9000 })
             .then(i => {
                 expect(i.name).to.be.equal('existingEntry')
                 done()
@@ -135,7 +136,7 @@ describe('MongooseHelper', () => {
     })
 
     it('sends notification on update', (done) => {
-        helper.update({ name: 'existingEntry', p2: 'p2' })
+        helper.update({ id: 9000, input: { name: 'existingEntry', p2: 'p2' }})
             .then(i => {
                 assert.calledWith(testPubsub.publish, 'testmodel updated', { _id: 9000, name: "existingEntry", p2: "p2" })
                 done()
@@ -143,7 +144,7 @@ describe('MongooseHelper', () => {
     })
 
     it('sends notification on delete', (done) => {
-        helper.delete({ name: 'existingEntry', p2: 'p2' })
+        helper.delete({ id: 9000 })
             .then(i => {
                 assert.calledWith(testPubsub.publish, 'testmodel deleted', { _id: 9000, name: "existingEntry" })
                 done()

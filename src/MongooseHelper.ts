@@ -40,7 +40,7 @@ export default class MongooseHelper {
     }
 
     update(params) {
-        return mongooseUpdateType(this.model, { _id: params.id }, params)
+        return mongooseUpdateType(this.model, { _id: params.id }, params.input)
         .then(result => {
             this.pubsub.publish(this.updatedSubscriptionName, result)
             return result
