@@ -19,8 +19,8 @@ export default class MongooseHelper {
         private uniqueProperty: string,
         private pubsub
     ) {
-        this.modelName = this.model.collection.name.toLowerCase()
-        this.pubsubTypeName = this.model.collection.name.toLowerCase()
+        this.modelName = this.model.modelName.toLowerCase()
+        this.pubsubTypeName = this.model.modelName.toLowerCase()
         this.createdSubscriptionName = `${this.pubsubTypeName} created`
         this.updatedSubscriptionName = `${this.pubsubTypeName} updated`
         this.deletedSubscriptionName = `${this.pubsubTypeName} deleted`
