@@ -7,6 +7,8 @@ import requireTypePermissions from './requireTypePermissions'
 import getProjection from './getProjection'
 import { Operation } from './Operation'
 
+import { nsqPublish } from './nsq'
+
 export default class MongooseHelper {
     private modelName: string
     private pubsubTypeName: string
@@ -21,9 +23,9 @@ export default class MongooseHelper {
     ) {
         this.modelName = this.model.modelName.toLowerCase()
         this.pubsubTypeName = this.model.modelName.toLowerCase()
-        this.createdSubscriptionName = `${this.pubsubTypeName} created`
-        this.updatedSubscriptionName = `${this.pubsubTypeName} updated`
-        this.deletedSubscriptionName = `${this.pubsubTypeName} deleted`
+        this.createdSubscriptionName = `${this.pubsubTypeName}.created`
+        this.updatedSubscriptionName = `${this.pubsubTypeName}.updated`
+        this.deletedSubscriptionName = `${this.pubsubTypeName}.deleted`
     }
 
     create(params) {
@@ -34,7 +36,7 @@ export default class MongooseHelper {
             }, 
             params)
         .then(result => {
-            this.pubsub.publish(this.createdSubscriptionName, result)
+            nsqPublish(this.createdSubscriptionName, result)
             return result
         })
     }
@@ -42,7 +44,7 @@ export default class MongooseHelper {
     update(params) {
         return mongooseUpdateType(this.model, { _id: params.id }, params.input)
         .then(result => {
-            this.pubsub.publish(this.updatedSubscriptionName, result)
+            nsqPublish(this.updatedSubscriptionName, result)
             return result
         })
     }
@@ -50,7 +52,7 @@ export default class MongooseHelper {
     delete(params) {
         return this.model.remove({ _id: params.id }).exec()
         .then(result => {
-            this.pubsub.publish(this.deletedSubscriptionName, result)
+            nsqPublish(this.deletedSubscriptionName, {_id: params.id})
             return result
         })
     }
