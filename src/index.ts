@@ -11,6 +11,7 @@ import { Operation } from './Operation'
 import RelayHelper from './RelayHelper'
 import RelayHelperFactory from './RelayHelperFactory'
 import MongooseHelper from "./MongooseHelper"
+import {getNsqWriter, nsqPublish, nsqReaderFactory } from './nsq'
 
 export {
     getProjection,
@@ -25,5 +26,8 @@ export {
     Operation,
     RelayHelper,
     RelayHelperFactory,
-    MongooseHelper
+    MongooseHelper,
+    getNsqWriter,
+    nsqPublish,
+    nsqReaderFactory
 }
